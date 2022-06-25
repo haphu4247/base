@@ -1,0 +1,55 @@
+name: base
+version: 1.0.0+1
+publish_to: none
+description: My Base Flutter project.
+environment: 
+  sdk: '>=2.15.1 <3.0.0'
+
+dependencies: 
+  flutter: 
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  #locales generator command: get generate locales assets/locales
+  get: ^4.6.5
+  firebase_core: 
+  firebase_auth: 
+
+  #local database generator command: flutter packages pub run build_runner build
+  hive: ^2.2.1
+  hive_flutter: ^1.1.0
+  path_provider: ^2.0.10
+
+  shared_preferences: ^2.0.15
+
+  cached_network_image: ^3.2.0
+  #for Html string
+  flutter_html: ^2.2.1
+
+  fluttertoast: ^8.0.9
+  
+
+dev_dependencies: 
+  # flutter_lints: ^1.0.0
+  build_runner: ^2.1.11
+  hive_generator: ^1.1.3
+  lints: ^1.0.1
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets:
+      # - assets/images/
+      # - assets/icons/
+      # - assets/icons/bookings/
+      # - assets/icons/home/
+      - assets/locales/
+      - assets/fonts/
+  fonts:
+    - family: RubikMoonrocks
+      fonts:
+        - asset: assets/fonts/RubikMoonrocks-Regular.ttf
+
+          
+  uses-material-design: true
+

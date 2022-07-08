@@ -1,12 +1,11 @@
 import 'dart:convert';
-
-import 'package:base/app/base/base_model.dart';
-import 'package:base/app/components/app_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
+import '../base/base_model.dart';
 import '../base/base_response.dart';
+import '../components/app_toast.dart';
 
 extension ResponseExt on Response {
   checkResultList<R extends BaseModel<R>>(

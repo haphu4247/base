@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:encrypt/encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../base/base_model.dart';
@@ -11,29 +12,33 @@ enum LocalDataKey {
   appLocale,
   //bool
   firstTimeOpenApp,
-  //bool
+  //Brightness
   themes,
 }
 
 extension LocalDataKeyExt on LocalDataKey {
   Future<bool> setBool(bool value) async {
-    final _prefs = await SharedPreferences.getInstance();
-    return _prefs.setBool(toString(), value);
+    return setString(value.toString());
   }
 
   Future<bool?> getBool() async {
-    final _prefs = await SharedPreferences.getInstance();
-    return _prefs.getBool(toString());
+    var boolValue = await getString();
+    if (boolValue != null) {
+      return boolValue == 'true';
+    }
+    return null;
   }
 
-  Future<bool> setString(String value) async {
-    final _prefs = await SharedPreferences.getInstance();
-    return _prefs.setString(toString(), value);
+  Future<bool> setInt(int value) async {
+    return setString(value.toString());
   }
 
-  Future<String?> getString() async {
-    final _prefs = await SharedPreferences.getInstance();
-    return _prefs.getString(toString());
+  Future<int?> getInt() async {
+    var intValue = await getString();
+    if (intValue != null) {
+      return int.tryParse(intValue);
+    }
+    return null;
   }
 
   Future<bool> clear() async {
@@ -70,5 +75,47 @@ extension LocalDataKeyExt on LocalDataKey {
       return mapList;
     }
     return null;
+  }
+
+  Future<bool> setString(String value) async {
+    final _prefs = await SharedPreferences.getInstance();
+    return _prefs.setString(_CryptoHelper.instance.encrypt(name),
+        _CryptoHelper.instance.encrypt(value));
+  }
+
+  Future<String?> getString() async {
+    final _prefs = await SharedPreferences.getInstance();
+    var key = name;
+    var encryptKey = _CryptoHelper.instance.encrypt(key);
+    var value = _prefs.getString(encryptKey);
+    if (value != null && value.isNotEmpty) {
+      value = _CryptoHelper.instance.decrypt(value);
+    }
+    print('key: $key value:$value');
+    return value;
+  }
+}
+
+class _CryptoHelper {
+  final Key key = Key.fromUtf8('ASDFGHJKLASDFGHJ');
+  final IV iv = IV.fromLength(16);
+  late final encrypter;
+  // final String _ivKey = "912QWA56CFB3SA3F";
+
+  static final instance = _CryptoHelper();
+
+  _CryptoHelper() {
+    encrypter = Encrypter(AES(key));
+  }
+
+  String encrypt(String plainText) {
+    final encrypter = Encrypter(AES(key));
+    final encrypted = encrypter.encrypt(plainText, iv: iv);
+    return encrypted.base16;
+  }
+
+  String decrypt(String base16) {
+    final decrypted = encrypter.decrypt16(base16, iv: iv);
+    return decrypted;
   }
 }

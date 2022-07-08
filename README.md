@@ -1,16 +1,28 @@
-# base
+# My Base Project 
 
-A new Flutter project.
+Step for Web build:
+[command]: [firebase login]
+[command1]: [firebase init]
+? What do you want to use as your public directory? [build/web]
+? Configure as a single-page app (rewrite all urls to /index.html)? [Yes]
+? Set up automatic builds and deploys with GitHub? [Yes]
+? File build/web/index.html already exists. Overwrite? [No]
 
-## Getting Started
+? For which GitHub repository would you like to set up a GitHub workflow? (format: user/repository) [haphu4247/profiles]
 
-This project is a starting point for a Flutter application.
+✔  Created service account github-action-508993030 with Firebase Hosting admin permissions.
+✔  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_MY_PROFILE_77120.
+i  You can manage your secrets at https://github.com/haphu4247/profiles/settings/secrets.
 
-A few resources to get you started if this is your first Flutter project:
+? Set up the workflow to run a build script before every deploy? [Yes]
+? What script should be run before every deploy? [flutter build web]
+? GitHub workflow file for PR previews exists. Overwrite? firebase-hosting-pull-request.yml [Yes]
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+✔  Created workflow file /Users/ngan/Documents/GitHub/profiles/.github/workflows/firebase-hosting-pull-request.yml
+? Set up automatic deployment to your site's live channel when a PR is merged? [Yes]
+? What is the name of the GitHub branch associated with your site's live channel? [main]
+? The GitHub workflow file for deploying to the live channel already exists. Overwrite? firebase-hosting-merge.yml [Yes]
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+add this ["site": "phuhp"] to [firebase.json]
+[command2]: [firebase deploy --only hosting:phuhp]
+

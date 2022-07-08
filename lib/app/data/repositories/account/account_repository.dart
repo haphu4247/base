@@ -16,7 +16,10 @@ abstract class AccountRepository extends BaseRepository {
 
   final String accountBaseUrl = Environment().config.apiHost;
   //abstrac class
-  Future<Response> fetchData(Map body, AccountApi type);
+  Future<Response> fetchData(AccountApi type,
+      {Map? body,
+      Map<String, dynamic>? queryParams,
+      Map<String, String>? headerParams});
 
   Future<Response> uploadFile(
       String userId, List<File> body, AccountApi type, String accessToken);
@@ -26,9 +29,20 @@ class _AccountRepositoryImpl extends AccountRepository {
   _AccountRepositoryImpl() : super._internal();
 
   @override
-  Future<Response> fetchData(Map body, AccountApi type) {
+  Future<Response> fetchData(AccountApi type,
+      {Map? body,
+      Map<String, dynamic>? queryParams,
+      Map<String, String>? headerParams = const {
+        'accept': 'application/json'
+      }}) {
     return requestData(
-        AccountParams(baseUrl: accountBaseUrl, type: type, bodyParams: body));
+      AccountParams(
+          baseUrl: accountBaseUrl,
+          type: type,
+          bodyParams: body,
+          headerParams: headerParams,
+          queryParams: queryParams),
+    );
   }
 
   @override
@@ -49,6 +63,9 @@ class _AccountRepositoryImpl extends AccountRepository {
       'accept': 'application/json'
     };
     return requestData(AccountParams(
-        baseUrl: accountBaseUrl, type: type, bodyParams: form, header: header));
+        baseUrl: accountBaseUrl,
+        type: type,
+        bodyParams: form,
+        headerParams: header));
   }
 }

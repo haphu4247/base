@@ -15,7 +15,7 @@ extension AccountApiExt on AccountApi {
       case AccountApi.accountInfo:
         return 'api/account';
       case AccountApi.signup:
-        return 'account/signup';
+        return 'api/account/signup';
       case AccountApi.update:
         return 'api/account';
     }
@@ -32,11 +32,11 @@ extension AccountApiExt on AccountApi {
     }
   }
 
-  Map<String, dynamic>? getQuery() {
-    return null;
-  }
+  // Map<String, dynamic>? getQuery() {
+  //   return null;
+  // }
 
-  Map<String, String>? getHeaders() {
-    return {};
-  }
+  // Map<String, String>? getHeaders() {
+  //   return {};
+  // }
 }

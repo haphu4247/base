@@ -5,29 +5,29 @@ class AccountParams extends BaseParams {
   final String baseUrl;
   final AccountApi type;
   final dynamic bodyParams;
-  final Map<String, dynamic>? queries;
-  final Map<String, String>? header;
+  final Map<String, dynamic>? queryParams;
+  final Map<String, String>? headerParams;
 
   AccountParams({
     required this.type,
     required this.baseUrl,
     this.bodyParams,
-    this.queries,
-    this.header,
+    this.queryParams,
+    this.headerParams,
   });
 
   @override
-  get body => bodyParams;
-
-  @override
-  Map<String, String>? get headers => header;
+  String get url => baseUrl + type.getPath();
 
   @override
   HTTPMethod get method => type.getMethod();
 
   @override
-  Map<String, dynamic>? get query => type.getQuery();
+  get body => bodyParams;
 
   @override
-  String get url => baseUrl + type.getPath();
+  Map<String, String>? get headers => headerParams;
+
+  @override
+  Map<String, dynamic>? get query => queryParams;
 }

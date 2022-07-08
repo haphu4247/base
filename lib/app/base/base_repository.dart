@@ -8,13 +8,25 @@ abstract class BaseRepository extends GetConnect {
   }
 
   Future<Response> requestData(BaseParams params) async {
+    var tempQuery = params.query;
+    var temUrl = params.url;
+    if (tempQuery != null) {
+      temUrl = '${params.url}?${encodeQueryParameters(tempQuery)}';
+    }
     return await request(
-      params.url,
+      temUrl,
       params.method.string,
-      headers: params.headers,
-      query: params.query,
       body: params.body,
+      headers: params.headers,
+      query: tempQuery,
     );
+  }
+
+  String encodeQueryParameters(Map params) {
+    return params.entries
+        .map((e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
   }
 }
 
@@ -40,7 +52,7 @@ extension HTTPMethodString on HTTPMethod {
 abstract class BaseParams {
   String get url;
   HTTPMethod get method;
+  dynamic get body;
   Map<String, String>? get headers;
   Map<String, dynamic>? get query;
-  dynamic get body;
 }

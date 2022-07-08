@@ -46,7 +46,8 @@ class ImageLoader extends StatelessWidget {
         height: height,
         width: width,
       );
-    } else if (name.endsWith(IconsType.png.name)) {
+    } else if (name.endsWith(IconsType.png.name) ||
+        name.endsWith(IconsType.jpg.name)) {
       return Image.asset(
         'assets/${folder.path}/$name',
         fit: fit,
@@ -80,7 +81,7 @@ class _ErrorLoader extends StatelessWidget {
   }
 }
 
-enum IconsType { svg, png, http }
+enum IconsType { svg, png, jpg, http }
 
 enum AssetsFolder { icons, images, home, settings }
 

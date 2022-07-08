@@ -1,0 +1,44 @@
+{
+    "intro": {
+        "header": {
+            "name": "<PhuHP/>",
+            "project": "Proyecto",
+            "resume": "Reanudar",
+            "about": "Acerca de",
+            "skills": "Habilidades"
+        },
+        "body": {
+            "name": "Oye, soy Alex",
+            "description": "Gracias por visitar mi página. Me apasiona hacer aplicaciones móviles y me encantaría cambiar el mundo por la tecnología",
+            "moreAboutMe": "Más sobre mí"
+        },
+        "skills": {
+            "technical": {
+                "title": "Habilidades Técnicas"
+            },
+            "soft": {
+                "title": "Habilidades blandas",
+                "collaboration": "Colaboración",
+                "positivity": "Positividad",
+                "adaptability": "Adaptabilidad",
+                "problem_solving": "Resolución de problemas",
+                "empathy": "Empatía",
+                "organization": "Organización",
+                "creativity": "Creatividad"
+            },
+            "moreAboutMe": "Más sobre mí"
+        },
+        "footer": {
+            "keepInTouch": "Estamos en contacto",
+            "description": "¿Estás trabajando en algo grandioso? ¡Me encantaría unirme a usted para resolver cualquier problema en su impresionante proyecto! ¡Envíame una carta y comienza el proyecto ahora mismo! Sólo hazlo",
+            "email": "haphu4247@gmail.com",
+            "with": "con",
+            "by": "por",
+            "using": "Usando"
+        },
+        "aboutMe": {
+            "title": "Sobre mí",
+            "description": "Mi nombre en inglés es Alex. Soy un desarrollador de aplicaciones móviles de pila completa, puedo trabajar bien tanto en Android como en iOS utilizando SDK nativo o el marco flutter. Comencé como desarrollador de Android y aprendí sobre iOS y Flutter en el proceso de trabajo. En mi historial laboral, trabajé en muchos proyectos y en muchos dominios, como pago, transmisión en vivo, reservas, audio y aplicaciones de aprendizaje. En mi tiempo libre, me encanta trabajar en proyectos paralelos y aprender nuevas tecnologías sobre aplicaciones móviles."
+        }
+    }
+}

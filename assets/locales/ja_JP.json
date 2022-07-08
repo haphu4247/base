@@ -1,5 +1,44 @@
 {
-   "home": {
-      "welcome":"Welcome to my Base Project"
+   "intro": {
+      "header": {
+         "name": "<PhuHP/>",
+         "project": "プロジェクト",
+         "resume": "レジュメ",
+         "about": "に関しては",
+         "skills": "スキル"
+      },
+      "body": {
+         "name": "ねえ、私はアレックスです",
+         "description": "私のページを訪問していただきありがとうございます。私はモバイルアプリケーションを作ることに情熱を注いでおり、テクノロジーによって世界を変えるのが大好きです",
+         "moreAboutMe": "私についての詳細"
+      },
+      "skills": {
+         "technical": {
+            "title": "技術スキル"
+         },
+         "soft": {
+            "title": "ソフトスキル",
+            "collaboration": "コラボレーション",
+            "positivity": "陽性",
+            "adaptability": "適応性",
+            "problem_solving": "問題解決",
+            "empathy": "共感",
+            "organization": "組織",
+            "creativity": "創造性"
+         },
+         "moreAboutMe": "私についての詳細"
+      },
+      "footer": {
+         "keepInTouch": "連絡を取り合いましょう",
+         "description": "あなたは何か素晴らしいことに取り組んでいますか?私はあなたの厄介なプロジェクトの問題を解決するためにあなたと一緒に参加したいと思います!私に手紙を送って、今すぐプロジェクトを開始してください!それをしてください",
+         "email": "haphu4247@gmail.com",
+         "with": "で",
+         "by": "によって",
+         "using": "使用"
+      },
+      "aboutMe": {
+         "title": "私について",
+         "description": "私の英語名はアレックスです。私はフルスタックのモバイルアプリ開発者であり、ネイティブSDKまたはFlutterフレームワークを使用してAndroidとiOSの両方でうまく動作することができます。私はAndroid開発者としてスタートし、作業プロセスに関するiOSとFlutterについて学びました。私の職歴では、支払い、ライブストリーミング、予約、オーディオ、学習アプリなど、多くのプロジェクトと多くのドメインで働いていました。余暇には、サイドプロジェクトに取り組み、モバイルアプリケーションに関する新しい技術を学ぶのが大好きです。"
+      }
    }
 }

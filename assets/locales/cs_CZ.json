@@ -1,0 +1,44 @@
+{
+    "intro": {
+        "header": {
+            "name": "<PhuHP/>",
+            "project": "Projekt",
+            "resume": "Pokračovat",
+            "about": "Asi",
+            "skills": "Dovednosti"
+        },
+        "body": {
+            "name": "Ahoj, já jsem Alex",
+            "description": "Díky za návštěvu mé stránky. Jsem vášnivý při vytváření mobilních aplikací a rád bych změnil svět technologií",
+            "moreAboutMe": "Více o mně"
+        },
+        "skills": {
+            "technical": {
+                "title": "Technické dovednosti"
+            },
+            "soft": {
+                "title": "Měkké dovednosti",
+                "collaboration": "Spolupráce",
+                "positivity": "Kladně",
+                "adaptability": "Přizpůsobivost",
+                "problem_solving": "Řešení problémů",
+                "empathy": "Empatie",
+                "organization": "Organizace",
+                "creativity": "Tvořivost"
+            },
+            "moreAboutMe": "Více o mně"
+        },
+        "footer": {
+            "keepInTouch": "Ozveme se",
+            "description": "Pracujete na něčem skvělém? Rád bych se k vám připojil, abych vyřešil všechny problémy ve vašem úžasném projektu! Napište mi dopis a odstartujte projekt právě teď! Jen do toho",
+            "email": "haphu4247@gmail.com",
+            "with": "s",
+            "by": "vedle",
+            "using": "používající"
+        },
+        "aboutMe": {
+            "title": "O mně",
+            "description": "Moje anglické jméno je Alex. Jsem full-stack vývojář mobilních aplikací, být schopen dobře pracovat v obou Android a iOS pomocí nativní SDK nebo Flutter framework. Začal jsem jako vývojář pro Android a dozvěděl jsem se o iOS a Flutteru na pracovním procesu. Ve své pracovní historii jsem pracoval na mnoha projektech a v mnoha oblastech, jako jsou platby, živé vysílání, rezervace, audio a výuková aplikace. Ve volném čase rád pracuji na vedlejších projektech a učím se nové technologie o mobilních aplikacích."
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "intro": {
+        "header": {
+            "name": "<PhuHP/>",
+            "project": "Projet",
+            "resume": "Reprendre",
+            "about": "Environ",
+            "skills": "Compétences"
+        },
+        "body": {
+            "name": "Hé, je suis Alex",
+            "description": "Merci de visiter ma page. Je suis passionné par la création d’applications mobiles et j’aimerais changer le monde par la technologie",
+            "moreAboutMe": "En savoir plus sur moi"
+        },
+        "skills": {
+            "technical": {
+                "title": "Compétences techniques"
+            },
+            "soft": {
+                "title": "Compétences générales",
+                "collaboration": "Collaboration",
+                "positivity": "Positivité",
+                "adaptability": "Adaptabilité",
+                "problem_solving": "Résolution de problème",
+                "empathy": "Empathie",
+                "organization": "Organisation",
+                "creativity": "Créativité"
+            },
+            "moreAboutMe": "En savoir plus sur moi"
+        },
+        "footer": {
+            "keepInTouch": "On reste en contact",
+            "description": "Travaillez-vous sur quelque chose de génial? J’adorerais me joindre à vous pour résoudre tous les problèmes de votre projet génial! Envoyez-moi une lettre et lancez le projet dès maintenant! Fais-le",
+            "email": "haphu4247@gmail.com",
+            "with": "avec",
+            "by": "par",
+            "using": "Utilisant"
+        },
+        "aboutMe": {
+            "title": "À propos de moi",
+            "description": "Je m’appelle Alex. Je suis un développeur d’applications mobiles full-stack, capable de bien fonctionner sous Android et iOS en utilisant le SDK natif ou le framework Flutter. J’ai commencé en tant que développeur Android et j’ai découvert iOS et Flutter sur le processus de travail. Dans mon parcours professionnel, j’ai travaillé sur de nombreux projets et dans de nombreux domaines, tels que le paiement, la diffusion en direct, la réservation, l’audio et l’application d’apprentissage. Dans mon temps libre, j’aime travailler sur des projets parallèles et apprendre de nouvelles technologies sur les applications mobiles."
+        }
+    }
+}

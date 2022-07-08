@@ -1,0 +1,44 @@
+{
+    "intro": {
+        "header": {
+            "name": "<PhuHP/>",
+            "project": "项目",
+            "resume": "恢复",
+            "about": "大约",
+            "skills": "技能"
+        },
+        "body": {
+            "name": "嘿，我是亚历克斯",
+            "description": "感谢您访问我的页面。我对制作移动应用程序充满热情，并希望通过技术改变世界",
+            "moreAboutMe": "更多关于我的信息"
+        },
+        "skills": {
+            "technical": {
+                "title": "技术技能"
+            },
+            "soft": {
+                "title": "软技能",
+                "collaboration": "协作",
+                "positivity": "积极性",
+                "adaptability": "适应性",
+                "problem_solving": "解决问题",
+                "empathy": "移情",
+                "organization": "组织",
+                "creativity": "创造力"
+            },
+            "moreAboutMe": "更多关于我的信息"
+        },
+        "footer": {
+            "keepInTouch": "保持联络",
+            "description": "你正在做一些伟大的事情吗？我很乐意与您一起解决您众多项目中的任何问题！给我写一封信，现在就开始这个项目！只管去做",
+            "email": "haphu4247@gmail.com",
+            "with": "跟",
+            "by": "由",
+            "using": "用"
+        },
+        "aboutMe": {
+            "title": "关于我",
+            "description": "我的英文名字是亚历克斯。我是一个全栈移动应用程序开发人员，能够使用本机SDK或Flutter框架在Android和iOS中很好地工作。我最初是一名Android开发人员，并在工作流程中了解了iOS和Flutter。在我的工作经历中，我参与过许多项目和许多领域，例如支付，直播，预订，音频和学习应用程序。在我的空闲时间，我喜欢从事业余项目，并学习有关移动应用程序的新技术。"
+        }
+    }
+}

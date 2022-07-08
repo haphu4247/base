@@ -1,5 +1,44 @@
 {
-   "home": {
-      "welcome":"Welcome to my Base Project"
+   "intro": {
+      "header": {
+         "name": "<PhuHP/>",
+         "project": "Dự án",
+         "resume": "Sơ yếu lý lịch",
+         "about": "Về Tôi",
+         "skills": "Kỹ năng"
+      },
+      "body": {
+         "name": "Xin Chào, tôi là Alex",
+         "description": "Cảm ơn bạn đã ghé thăm trang của tôi. Tôi đam mê làm ứng dụng di động và rất thích thay đổi thế giới bằng công nghệ.",
+         "moreAboutMe": "Thông tin thêm về tôi"
+      },
+      "skills": {
+         "technical": {
+            "title": "Kỹ năng kỹ thuật"
+         },
+         "soft": {
+            "title": "Kỹ năng mềm",
+            "collaboration": "Hợp tác",
+            "positivity": "Độ nhạy",
+            "adaptability": "Khả năng thích ứng",
+            "problem_solving": "Giải quyết vấn đề",
+            "empathy": "Thấu hiểu và đồng cảm",
+            "organization": "Tổ chức",
+            "creativity": "Sáng tạo"
+         },
+         "moreAboutMe": "Thông tin thêm về tôi"
+      },
+      "footer": {
+         "keepInTouch": "Liên Lạc Với Tôi",
+         "description": "Bạn đang làm việc trên một cái gì đó tuyệt vời? Tôi rất muốn tham gia cùng bạn để giải quyết mọi vấn đề trong dự án tuyệt vời của bạn! Hãy gửi cho tôi một lá thư và bắt đầu dự án ngay bây giờ! email me! ",
+         "email": "haphu4247@gmail.com",
+         "with": "với",
+         "by": "bởi",
+         "using": "sử dụng"
+      },
+      "aboutMe": {
+         "title": "Vài nét về tôi",
+         "description": "Tên tiếng anh của tôi là Alex. Tôi là một nhà phát triển ứng dụng dành cho thiết bị di động, có thể làm việc tốt trên cả Android và iOS bằng cách sử dụng Native SDK hoặc Flutter Framework. Tôi bắt đầu với tư cách là một nhà phát triển Android và đã tìm hiểu về iOS và Flutter trong quá trình làm việc. Trong quá trình làm việc của mình, tôi đã làm việc trên nhiều dự án và trong nhiều lĩnh vực, chẳng hạn như thanh toán, phát trực tiếp, đặt chỗ, ứng dụng âm thanh và học tập. Trong thời gian rảnh, tôi thích làm việc với các dự án phụ và tìm hiểu các công nghệ mới về ứng dụng di động."
+      }
    }
 }

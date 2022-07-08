@@ -1,8 +1,8 @@
-import 'package:base/app/data/local/db/entities/user_role.dart';
-import 'package:base/app/data/local/db/type_id.dart';
 import 'package:hive/hive.dart';
 
 import '../../../../base/base_entity.dart';
+import '../type_id.dart';
+import 'user_role.dart';
 
 part 'account_entity.g.dart';
 

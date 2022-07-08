@@ -1,5 +1,6 @@
-import 'package:base/app/data/local/db/type_id.dart';
 import 'package:hive/hive.dart';
+
+import '../type_id.dart';
 
 part 'user_role.g.dart';
 

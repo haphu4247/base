@@ -5,6 +5,7 @@ const _screenHeight = 812;
 const _screenWidth = 375;
 
 class Utils {
+  Utils._internal();
   static double _heightPercent(double size) {
     return (size / _screenHeight);
   }

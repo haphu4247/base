@@ -1,18 +1,20 @@
 import 'dart:io' show Directory, Platform;
-
-import 'package:base/app/config/app_languages.dart';
-import 'package:base/app/data/local/db/entities/account_entity.dart';
-import 'package:base/app/data/local/db/entities/user_role.dart';
-import 'package:base/app/data/local/local_data_key.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../config/app_languages.dart';
+import '../config/themes/app_themes.dart';
+import '../data/local/db/entities/account_entity.dart';
+import '../data/local/db/entities/user_role.dart';
+import '../data/local/local_data_key.dart';
 import '../routes/app_pages.dart';
 import 'envi_config.dart';
 import 'flavour.dart';
 import 'prod_config.dart';
 import 'staging_config.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class Environment {
   static final Environment _singleton = Environment._internal();
@@ -25,20 +27,26 @@ class Environment {
 
   late Locale selectedLocales;
 
+  late ThemeMode themeMode = ThemeMode.system;
+
   bool? _firstTimeOpenApp;
+
+  bool isWeb = kIsWeb;
   initConfig(Flavour environment) async {
     // await Firebase.initializeApp(
     //   options: DefaultFirebaseOptions.currentPlatform,
     // );
-    // if (Platform.isAndroid || Platform.isIOS) {
-    //   await _initHive();
-    // }
-
+    if (!isWeb) {
+      await _initHive();
+    }
     config = _getConfig(environment);
 
     selectedLocales = await _loadLocales();
 
     _firstTimeOpenApp = await LocalDataKey.firstTimeOpenApp.getBool();
+
+    var appTheme = AppThemes.instance;
+    themeMode = await appTheme.loadTheme();
   }
 
   Future<void> _initHive() async {
@@ -51,7 +59,7 @@ class Environment {
 
   String get initial {
     if (_firstTimeOpenApp == null || _firstTimeOpenApp == false) {
-      return Routes.INTRO;
+      return Routes.SPLASH;
     }
     return Routes.SPLASH;
   }

@@ -1,14 +1,21 @@
-import 'package:base/app/config/colors/app_colors.dart';
-import 'package:base/app/config/app_fonts.dart';
 import 'package:flutter/material.dart';
 
-ThemeData darkTheme = ThemeData(
+import '../app_fonts.dart';
+import '../colors/app_colors.dart';
+
+ThemeData appDarkTheme = ThemeData(
   brightness: Brightness.dark,
-  fontFamily: AppFonts.regular.fontName,
+  fontFamily: AppFonts.Roboto.fontName,
   primaryColor: AppColors.primary,
+  primaryColorDark: AppColors.primaryColorLight,
+  primaryColorLight: AppColors.primaryColorDark,
+  primaryIconTheme: IconThemeData(color: AppColors.white),
+  backgroundColor: AppColors.black,
   scaffoldBackgroundColor: AppColors.black,
-  // splashColor: AppColors.primary,
-  // highlightColor: AppColors.primary,
+  hoverColor: AppColors.hoverColor,
+  splashColor: AppColors.splashColor,
+  highlightColor: AppColors.highlightColor,
+  indicatorColor: AppColors.primary,
   appBarTheme: AppBarTheme(
     elevation: 0,
     color: AppColors.primary,
@@ -18,7 +25,7 @@ ThemeData darkTheme = ThemeData(
     showSelectedLabels: false,
     showUnselectedLabels: false,
     selectedItemColor: AppColors.primary,
-    unselectedItemColor: AppColors.grey,
+    unselectedItemColor: AppColors.lightGrey,
     selectedLabelStyle: TextStyle(
       color: AppColors.transparent,
       fontSize: 12.0,

@@ -1,9 +1,10 @@
 //https://api.flutter.dev/flutter/material/TextTheme-class.html
-import 'package:base/app/config/themes/dark_theme.dart';
-import 'package:base/app/config/themes/light_theme.dart';
-import 'package:base/app/data/local/local_data_key.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../data/local/local_data_key.dart';
+import 'dark_theme.dart';
+import 'light_theme.dart';
 
 class AppThemes {
   static final AppThemes instance = AppThemes._internal();
@@ -11,21 +12,27 @@ class AppThemes {
     // initialization logic
   }
 
-  var isLightTheme = true;
-  var light = lightTheme;
-  var dark = darkTheme;
-  Future<ThemeData> loadTheme() async {
-    var result = await LocalDataKey.themes.getBool();
-    isLightTheme = result ?? true;
-    return isLightTheme ? light : dark;
+  ThemeMode themeMode = ThemeMode.dark;
+  var light = appLightTheme;
+  var dark = appDarkTheme;
+  Future<ThemeMode> loadTheme() async {
+    var result = await LocalDataKey.themes.getString();
+    if (result != null) {
+      themeMode = ThemeMode.values.byName(result);
+    } else {
+      themeMode = ThemeMode.light;
+    }
+    return themeMode;
   }
 
   void switchTheme() async {
     // Call this function to switch ThemeMode
-    isLightTheme = !isLightTheme;
-    await LocalDataKey.themes.setBool(isLightTheme);
-    Get.changeThemeMode(
-      isLightTheme ? ThemeMode.light : ThemeMode.dark,
-    );
+    if (themeMode == ThemeMode.light) {
+      themeMode = ThemeMode.dark;
+    } else {
+      themeMode = ThemeMode.light;
+    }
+    await LocalDataKey.themes.setString(themeMode.name);
+    Get.changeThemeMode(themeMode);
   }
 }

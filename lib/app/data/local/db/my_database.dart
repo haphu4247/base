@@ -1,18 +1,14 @@
+import 'package:base/app/base/base_entity.dart';
 import 'package:hive/hive.dart';
 
 enum LocalDatabaseType { account, settings }
 
 extension LocalDatabaseTypeExt on LocalDatabaseType {
   String _getName() {
-    switch (this) {
-      case LocalDatabaseType.account:
-        return 'account';
-      case LocalDatabaseType.settings:
-        return 'settings';
-    }
+    return this.name;
   }
 
-  save<T>(
+  save<T extends BaseEntity<T>>(
     T value,
   ) async {
     var box = await Hive.openBox<T>(_getName());
@@ -31,9 +27,9 @@ extension LocalDatabaseTypeExt on LocalDatabaseType {
     return Hive.openBox<E>(_getName());
   }
 
-  Future<List<T>> read<T>() async {
+  Future<Iterable<T>> read<T extends BaseEntity<T>>() async {
     var box = await Hive.openBox<T>(_getName());
-    var result = box.values.toList();
+    var result = box.values;
     await box.close();
     return result;
   }

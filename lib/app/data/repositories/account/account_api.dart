@@ -31,12 +31,4 @@ extension AccountApiExt on AccountApi {
         return HTTPMethod.post;
     }
   }
-
-  // Map<String, dynamic>? getQuery() {
-  //   return null;
-  // }
-
-  // Map<String, String>? getHeaders() {
-  //   return {};
-  // }
 }

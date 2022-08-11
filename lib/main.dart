@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'app/base/base_bindings.dart';
 import 'app/config/app_languages.dart';
 import 'app/config/themes/app_themes.dart';
-import 'app/flavour_config/environment.dart';
-import 'app/flavour_config/flavour.dart';
+import 'app/flavour/environment.dart';
+import 'app/flavour/flavour.dart';
 import 'app/routes/app_pages.dart';
 
 void main() async {

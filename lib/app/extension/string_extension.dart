@@ -1,3 +1,5 @@
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+
 extension StringExt on String {
   bool isValidEmail() {
     if (isEmpty) {
@@ -12,5 +14,9 @@ extension StringExt on String {
     return RegExp(
             r"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,20}$")
         .hasMatch(this);
+  }
+
+  String get convert {
+    return this.tr;
   }
 }

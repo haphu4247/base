@@ -9,10 +9,10 @@ import '../data/local/db/entities/account_entity.dart';
 import '../data/local/db/entities/user_role.dart';
 import '../data/local/local_data_key.dart';
 import '../routes/app_pages.dart';
-import 'envi_config.dart';
+import 'base_config.dart';
 import 'flavour.dart';
-import 'prod_config.dart';
-import 'staging_config.dart';
+import 'config_prod.dart';
+import 'config_staging.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -23,7 +23,7 @@ class Environment {
     return _singleton;
   }
 
-  late EnviConfig config;
+  late BaseConfig config;
 
   late Locale selectedLocales;
 
@@ -64,7 +64,7 @@ class Environment {
     return Routes.SPLASH;
   }
 
-  EnviConfig _getConfig(Flavour environment) {
+  BaseConfig _getConfig(Flavour environment) {
     switch (environment) {
       case Flavour.production:
         return ProdConfig();

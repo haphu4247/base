@@ -1,6 +1,6 @@
-import 'envi_config.dart';
+import 'base_config.dart';
 
-class StagingConfig implements EnviConfig {
+class ProdConfig implements BaseConfig {
   @override
   String get apiHost => 'https://phuhp.com';
 

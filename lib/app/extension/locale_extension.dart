@@ -12,7 +12,7 @@ extension LocaleExt on Locale {
       case 'en':
         return 'English';
       default:
-        return '한국인t';
+        return 'English';
     }
   }
 
@@ -27,7 +27,7 @@ extension LocaleExt on Locale {
       case 'en':
         return 'flag_enlish.png';
       default:
-        return 'flag_south_korea.png';
+        return 'flag_uk.png';
     }
   }
 }

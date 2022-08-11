@@ -1,4 +1,4 @@
-abstract class EnviConfig {
+abstract class BaseConfig {
   String get apiHost;
   bool get showBanner;
 }

@@ -1,6 +1,7 @@
-import 'package:base/app/config/colors/app_colors.dart';
-import 'package:base/app/utils/utils.dart';
 import 'package:flutter/material.dart';
+
+import '../../core/colors/app_colors.dart';
+import '../../core/utils/utils.dart';
 
 class SkillGrade extends StatelessWidget {
   const SkillGrade({

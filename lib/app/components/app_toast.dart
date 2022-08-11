@@ -1,7 +1,8 @@
-import 'package:base/app/config/colors/app_colors.dart';
-import 'package:base/app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import '../core/colors/app_colors.dart';
+import '../core/utils/utils.dart';
 
 enum ToastType { success, removed, error, warning, info, added }
 

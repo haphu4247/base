@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
-import '../base/base_model.dart';
-import '../base/api_service/base_response.dart';
-import '../components/app_toast.dart';
+import '../../base/api_service/base_response.dart';
+import '../../base/base_model.dart';
+import '../../components/app_toast.dart';
 
 extension ResponseExt on Response {
   checkResultList<R extends BaseModel<R>>(

@@ -2,9 +2,13 @@ abstract class BaseModel<T> {
   T parsedJson(dynamic data);
 
   Map toJson();
+
+  factory BaseModel.fromJson(Map<String, dynamic> json) {
+    throw UnimplementedError();
+  }
 }
 
-class BaseErrorModel extends BaseModel<BaseErrorModel> {
+class BaseErrorModel implements BaseModel<BaseErrorModel> {
   BaseErrorModel({
     required this.messageCode,
     required this.message,

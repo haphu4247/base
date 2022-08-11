@@ -3,42 +3,30 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
 
-import '../../../base/base_repository.dart';
-import '../../../flavour_config/environment.dart';
-import 'account_api.dart';
+import '../../../base/api_service/base_api_service.dart';
+import '../../../flavour/environment.dart';
 import 'account_params.dart';
 
-abstract class AccountRepository extends BaseRepository {
-  factory AccountRepository() {
-    return _AccountRepositoryImpl();
+class AccountServiceImpl extends BaseAPIService {
+  factory AccountServiceImpl() {
+    return AccountServiceImpl();
   }
-  AccountRepository._internal();
 
   final String accountBaseUrl = Environment().config.apiHost;
-  //abstrac class
-  Future<Response> fetchData(AccountApi type,
-      {Map? body,
-      Map<String, dynamic>? queryParams,
-      Map<String, String>? headerParams});
-
-  Future<Response> uploadFile(
-      String userId, List<File> body, AccountApi type, String accessToken);
-}
-
-class _AccountRepositoryImpl extends AccountRepository {
-  _AccountRepositoryImpl() : super._internal();
 
   @override
-  Future<Response> fetchData(AccountApi type,
-      {Map? body,
+  Future<Response> fetchData(dynamic apiEnum,
+      {String? appendPath,
+      Map? body,
       Map<String, dynamic>? queryParams,
       Map<String, String>? headerParams = const {
         'accept': 'application/json'
       }}) {
     return requestData(
       AccountParams(
+          apiEnum: apiEnum,
           baseUrl: accountBaseUrl,
-          type: type,
+          appendPath: appendPath,
           bodyParams: body,
           headerParams: headerParams,
           queryParams: queryParams),
@@ -47,7 +35,8 @@ class _AccountRepositoryImpl extends AccountRepository {
 
   @override
   Future<Response> uploadFile(
-      String userId, List<File> body, AccountApi type, String accessToken) {
+      dynamic apiEnum, String userId, String accessToken, List<File> body,
+      {String? appendPath}) {
     var list = body.map(
       (e) => MultipartFile(
         e.readAsBytes(),
@@ -64,7 +53,8 @@ class _AccountRepositoryImpl extends AccountRepository {
     };
     return requestData(AccountParams(
         baseUrl: accountBaseUrl,
-        type: type,
+        appendPath: appendPath,
+        apiEnum: apiEnum,
         bodyParams: form,
         headerParams: header));
   }

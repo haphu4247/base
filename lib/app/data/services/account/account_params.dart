@@ -1,26 +1,28 @@
-import '../../../base/base_repository.dart';
+import '../../../base/api_service/base_api_service.dart';
 import 'account_api.dart';
 
 class AccountParams extends BaseParams {
-  final String baseUrl;
-  final AccountApi type;
+  final String? baseUrl;
+  final String? appendPath;
+  final AccountApi apiEnum;
   final dynamic bodyParams;
   final Map<String, dynamic>? queryParams;
   final Map<String, String>? headerParams;
 
   AccountParams({
-    required this.type,
-    required this.baseUrl,
+    required this.apiEnum,
+    this.baseUrl,
+    this.appendPath,
     this.bodyParams,
     this.queryParams,
     this.headerParams,
   });
 
   @override
-  String get url => baseUrl + type.getPath();
+  String get url => '$baseUrl${apiEnum.getPath(appendPath)}';
 
   @override
-  HTTPMethod get method => type.getMethod();
+  HTTPMethod get method => apiEnum.method;
 
   @override
   get body => bodyParams;

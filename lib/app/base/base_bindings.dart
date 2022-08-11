@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 
-import '../data/repositories/account/account_usecase.dart';
+import '../data/services/account/account_service.dart';
+import '../data/services/account/account_service_impl.dart';
+import 'api_service/base_api_service.dart';
 
 abstract class BaseBindings extends Bindings {
   @override
@@ -12,16 +14,18 @@ abstract class BaseBindings extends Bindings {
 class AppBinding extends BaseBindings {
   @override
   void injectService() {
-    AccountBinding().injectService();
+    AccountServiceBinding().injectService();
   }
 }
 
-class AccountBinding extends BaseBindings {
+class AccountServiceBinding extends BaseBindings {
   @override
   void injectService() {
-    bool isRegistered = Get.isRegistered<AccountUsecase>();
+    bool isRegistered = Get.isRegistered<AccountService>();
     if (!isRegistered) {
-      Get.lazyPut<AccountUsecase>(() => AccountUsecase());
+      BaseAPIService baseService = AccountServiceImpl();
+      Get.lazyPut<AccountService>(
+          () => AccountService(baseService: baseService));
     }
   }
 }

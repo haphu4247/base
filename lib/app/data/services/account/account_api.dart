@@ -1,16 +1,13 @@
-import '../../../base/base_repository.dart';
+import '../../../base/api_service/base_api_service.dart';
 
 enum AccountApi {
-  //HTTPMethod.get;
   accountInfo,
-
-  //HTTPMethod.post
   signup,
   update,
 }
 
 extension AccountApiExt on AccountApi {
-  String getPath() {
+  String getPath(String? appendPath) {
     switch (this) {
       case AccountApi.accountInfo:
         return 'api/account';
@@ -21,7 +18,7 @@ extension AccountApiExt on AccountApi {
     }
   }
 
-  HTTPMethod getMethod() {
+  HTTPMethod get method {
     switch (this) {
       case AccountApi.accountInfo:
         return HTTPMethod.get;

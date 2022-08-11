@@ -1,9 +1,22 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 
-abstract class BaseRepository extends GetConnect {
+enum HTTPMethod { get, post, delete, put, patch }
+
+abstract class BaseParams {
+  String get url;
+  HTTPMethod get method;
+  dynamic get body;
+  Map<String, String>? get headers;
+  Map<String, dynamic>? get query;
+}
+
+abstract class BaseAPIService extends GetConnect {
   @override
   void onInit() {
     timeout = Duration(seconds: 45);
+    // baseUrl = Environment().config.apiHost;
     super.onInit();
   }
 
@@ -28,31 +41,22 @@ abstract class BaseRepository extends GetConnect {
             '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
         .join('&');
   }
-}
 
-enum HTTPMethod { get, post, delete, put, patch }
+  Future<Response> fetchData(
+    dynamic apiEnum, {
+    String? appendPath,
+    Map? body,
+    Map<String, dynamic>? queryParams,
+    Map<String, String>? headerParams,
+  });
 
-// extension HTTPMethodString on HTTPMethod {
-//   String get string {
-//     switch (this) {
-//       case HTTPMethod.get:
-//         return "get";
-//       case HTTPMethod.post:
-//         return "post";
-//       case HTTPMethod.delete:
-//         return "delete";
-//       case HTTPMethod.patch:
-//         return "patch";
-//       case HTTPMethod.put:
-//         return "put";
-//     }
-//   }
-// }
-
-abstract class BaseParams {
-  String get url;
-  HTTPMethod get method;
-  dynamic get body;
-  Map<String, String>? get headers;
-  Map<String, dynamic>? get query;
+  Future<Response> uploadFile(
+    dynamic apiEnum,
+    String userId,
+    String accessToken,
+    List<File> body, {
+    String? appendPath,
+  }) {
+    throw UnimplementedError();
+  }
 }

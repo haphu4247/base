@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
-import '../../base/api_services/base_response.dart';
+import '../../base/base_response.dart';
 import '../../base/base_model.dart';
 import '../../components/app_toast.dart';
 

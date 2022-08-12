@@ -24,7 +24,7 @@ abstract class BaseAPIService extends GetConnect {
     var tempQuery = params.query;
     var temUrl = params.url;
     if (tempQuery != null) {
-      temUrl = '${params.url}?${encodeQueryParameters(tempQuery)}';
+      temUrl = '${params.url}?${_encodeQueryParameters(tempQuery)}';
     }
     return await request(
       temUrl,
@@ -35,11 +35,15 @@ abstract class BaseAPIService extends GetConnect {
     );
   }
 
-  String encodeQueryParameters(Map params) {
+  String _encodeQueryParameters(Map params) {
     return params.entries
         .map((e) =>
             '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
         .join('&');
+  }
+
+  String _queryParameters(Map params) {
+    return params.entries.map((e) => '${e.key}=${e.value}').join('&');
   }
 
   Future<Response> fetchData(

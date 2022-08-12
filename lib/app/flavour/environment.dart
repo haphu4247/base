@@ -43,7 +43,7 @@ class Environment {
 
     selectedLocales = await _loadLocales();
 
-    _firstTimeOpenApp = await LocalDataKey.firstTimeOpenApp.getBool();
+    _firstTimeOpenApp = await LocalDataKey.bFirstTimeOpenApp.getBool();
 
     var appTheme = AppThemes.instance;
     themeMode = await appTheme.loadTheme();
@@ -75,7 +75,7 @@ class Environment {
   }
 
   Future<Locale> _loadLocales() async {
-    String? myLocale = await LocalDataKey.appLocale.getString();
+    String? myLocale = await LocalDataKey.sAppLocale.getString();
     return AppLanguages.getLocaleFromLanguage(langCode: myLocale);
   }
 }

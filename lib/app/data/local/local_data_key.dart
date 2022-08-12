@@ -5,15 +5,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../base/base_model.dart';
 
+/**
+ * add prefix for specify the data type.
+ * b: bool
+ * i: int
+ * d: double
+ * s: String
+ * o: Object ==> save as json String
+ */
 enum LocalDataKey {
   //clear all,
   clearAll,
-  //string
-  appLocale,
-  //bool
-  firstTimeOpenApp,
-  //Brightness
-  themes,
+  sAppLocale,
+  bFirstTimeOpenApp,
+  sThemes,
 }
 
 extension LocalDataKeyExt on LocalDataKey {

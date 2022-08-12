@@ -16,7 +16,7 @@ class AppThemes {
   var light = appLightTheme;
   var dark = appDarkTheme;
   Future<ThemeMode> loadTheme() async {
-    var result = await LocalDataKey.themes.getString();
+    var result = await LocalDataKey.sThemes.getString();
     if (result != null) {
       themeMode = ThemeMode.values.byName(result);
     } else {
@@ -32,7 +32,7 @@ class AppThemes {
     } else {
       themeMode = ThemeMode.light;
     }
-    await LocalDataKey.themes.setString(themeMode.name);
+    await LocalDataKey.sThemes.setString(themeMode.name);
     Get.changeThemeMode(themeMode);
   }
 }

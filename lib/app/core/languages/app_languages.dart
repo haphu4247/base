@@ -58,7 +58,7 @@ class AppLanguages extends Translations {
   }
 
   static void _saveLastSelectedLanguage(String langCode) async {
-    await LocalDataKey.appLocale.setString(langCode);
+    await LocalDataKey.sAppLocale.setString(langCode);
   }
 
   static Locale getLocaleFromLanguage({String? langCode}) {

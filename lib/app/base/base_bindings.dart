@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-import '../data/services/account/account_service.dart';
-import '../data/services/account/account_service_impl.dart';
-import 'api_service/base_api_service.dart';
+import '../data/api_services/account/account_service.dart';
+import '../data/api_services/account/account_service_impl.dart';
+import 'api_services/base_api_service.dart';
 
 abstract class BaseBindings extends Bindings {
   @override

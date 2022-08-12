@@ -2,8 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../generated/locales.g.dart';
-import '../data/local/local_data_key.dart';
+import '../../../generated/locales.g.dart';
+import '../../data/local/local_data_key.dart';
 
 class AppLanguages extends Translations {
   static final AppLanguages _instance = AppLanguages._internal();

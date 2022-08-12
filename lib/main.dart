@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/base/base_bindings.dart';
-import 'app/core/app_languages.dart';
+import 'app/core/languages/app_languages.dart';
 import 'app/core/themes/app_themes.dart';
 import 'app/flavour/environment.dart';
 import 'app/flavour/flavour.dart';

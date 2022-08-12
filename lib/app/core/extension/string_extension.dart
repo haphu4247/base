@@ -16,7 +16,7 @@ extension StringExt on String {
         .hasMatch(this);
   }
 
-  String get convert {
+  String get trs {
     return this.tr;
   }
 }

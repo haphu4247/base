@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../../../base/api_service/base_api_service.dart';
+import '../../../base/api_services/base_api_service.dart';
 import 'account_api.dart';
 
 class AccountService {

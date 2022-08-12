@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../core/app_languages.dart';
+import '../core/languages/app_languages.dart';
 import '../core/themes/app_themes.dart';
 import '../data/local/db/entities/account_entity.dart';
 import '../data/local/db/entities/user_role.dart';

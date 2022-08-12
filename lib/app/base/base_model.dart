@@ -4,6 +4,7 @@ abstract class BaseModel<T> {
   Map toJson();
 
   factory BaseModel.fromJson(Map<String, dynamic> json) {
+    // TODO: implement fromJson
     throw UnimplementedError();
   }
 }
@@ -26,10 +27,12 @@ class BaseErrorModel implements BaseModel<BaseErrorModel> {
     };
   }
 
-  BaseErrorModel.fromJson(Map json) {
-    messageCode = json['messageCode'];
-    message = json['message'];
-    code = json['code'];
+  @override
+  factory BaseErrorModel.fromJson(Map json) {
+    return BaseErrorModel(
+        messageCode: json['messageCode'],
+        message: json['message'],
+        code: json['code']);
   }
 
   @override

@@ -1,7 +1,7 @@
+import 'package:base/app/base/api_client/base_api_client.dart';
 import 'package:get/get.dart';
 
 import '../data/api_services/account/account_service.dart';
-import 'api_services/base_api_service.dart';
 
 abstract class BaseBindings extends Bindings {
   @override
@@ -23,9 +23,8 @@ class AccountServiceBinding extends BaseBindings {
   void injectService() {
     bool isRegistered = Get.isRegistered<AccountService>();
     if (!isRegistered) {
-      BaseAPIService baseService = Get.find<BaseAPIService>();
-      Get.lazyPut<AccountService>(
-          () => AccountService(baseService: baseService));
+      BaseApiClient apiClient = Get.find<BaseApiClient>();
+      Get.lazyPut<AccountService>(() => AccountService(apiClient: apiClient));
     }
   }
 }
@@ -33,9 +32,9 @@ class AccountServiceBinding extends BaseBindings {
 class BaseAPIServiceBinding extends BaseBindings {
   @override
   void injectService() {
-    bool isRegistered = Get.isRegistered<BaseAPIService>();
+    bool isRegistered = Get.isRegistered<BaseApiClient>();
     if (!isRegistered) {
-      Get.lazyPut<BaseAPIService>(() => BaseAPIService());
+      Get.lazyPut<BaseApiClient>(() => BaseApiClient());
     }
   }
 }

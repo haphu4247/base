@@ -1,26 +1,24 @@
+import 'package:base/app/base/api_client/base_api_client.dart';
 import 'package:get/get.dart';
-
-import '../../../base/api_services/base_api_service.dart';
 import 'account_api_setup.dart';
 
-class AccountService<T extends BaseAPIService> {
-  AccountService({required T baseService}) : _baseService = baseService;
+class AccountService<T extends BaseApiClient> {
+  AccountService({required T apiClient}) : _apiClient = apiClient;
 
-  final T _baseService;
+  final T _apiClient;
 
   Future<Response> accountInfo(Map body) {
-    return _baseService.fetchData(AccountApiSetup(AccountApi.accountInfo),
+    return _apiClient.fetchData(AccountapiSetup(AccountApi.accountInfo),
         body: body);
   }
 
   Future<Response> signup(Map body) {
-    return _baseService.fetchData(AccountApiSetup(AccountApi.signup),
-        body: body);
+    return _apiClient.fetchData(AccountapiSetup(AccountApi.signup), body: body);
   }
 
   Future<Response> update(Map body, String accessToken) {
-    final header = _baseService.getAuthHeader(accessToken);
-    return _baseService.fetchData(AccountApiSetup(AccountApi.update),
+    final header = _apiClient.getAuthHeader(accessToken);
+    return _apiClient.fetchData(AccountapiSetup(AccountApi.update),
         body: body, headerParams: header);
   }
 }

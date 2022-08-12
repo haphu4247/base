@@ -1,4 +1,4 @@
-import '../../../base/api_services/base_api_setup.dart';
+import 'package:base/app/base/api_client/base_api_setup.dart';
 
 enum AccountApi {
   accountInfo,
@@ -7,8 +7,8 @@ enum AccountApi {
   remove,
 }
 
-class AccountApiSetup extends BaseApiSetup {
-  AccountApiSetup(AccountApi apiType) : _apiType = apiType;
+class AccountapiSetup extends BaseApiSetup {
+  AccountapiSetup(AccountApi apiType) : _apiType = apiType;
   AccountApi _apiType;
 
   @override

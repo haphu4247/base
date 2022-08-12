@@ -1,18 +1,17 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-
-enum HTTPMethod { get, post, delete, put, patch }
-
-abstract class BaseParams {
-  String get url;
-  HTTPMethod get method;
-  dynamic get body;
-  Map<String, String>? get headers;
-  Map<String, dynamic>? get query;
-}
+import 'package:path/path.dart';
+import '../../flavour/environment.dart';
+import 'base_api_setup.dart';
+import 'base_params.dart';
 
 abstract class BaseAPIService extends GetConnect {
+  BaseAPIService._internal();
+  factory BaseAPIService() {
+    return _BaseAPIServiceImpl();
+  }
+
   @override
   void onInit() {
     timeout = Duration(seconds: 45);
@@ -20,18 +19,36 @@ abstract class BaseAPIService extends GetConnect {
     super.onInit();
   }
 
-  Future<Response> requestData(BaseParams params) async {
+  Future<Response> fetchData(
+    BaseApiSetup apiSetup, {
+    String? appendPath,
+    dynamic body,
+    Map<String, dynamic>? queryParams,
+    Map<String, String>? headerParams,
+  });
+
+  Future<Response> uploadFile(
+    BaseApiSetup apiSetup,
+    String userId,
+    String accessToken,
+    List<File> body, {
+    String? appendPath,
+  }) {
+    throw UnimplementedError();
+  }
+
+  Future<Response> _requestData(BaseParams params) async {
     var tempQuery = params.query;
-    var temUrl = params.url;
+    var fullURL = params.url;
     if (tempQuery != null) {
-      temUrl = '${params.url}?${_encodeQueryParameters(tempQuery)}';
+      fullURL = '${fullURL}?${_encodeQueryParameters(tempQuery)}';
     }
     return await request(
-      temUrl,
+      fullURL,
       params.method.name,
       body: params.body,
       headers: params.headers,
-      query: tempQuery,
+      // query: tempQuery,
     );
   }
 
@@ -46,21 +63,58 @@ abstract class BaseAPIService extends GetConnect {
     return params.entries.map((e) => '${e.key}=${e.value}').join('&');
   }
 
-  Future<Response> fetchData(
-    dynamic apiEnum, {
-    String? appendPath,
-    Map? body,
-    Map<String, dynamic>? queryParams,
-    Map<String, String>? headerParams,
-  });
+  Map<String, String> getAuthHeader(String accessToken) {
+    return {
+      'authorization': 'Bearer $accessToken',
+      'accept': 'application/json'
+    };
+  }
+}
 
+class _BaseAPIServiceImpl extends BaseAPIService {
+  _BaseAPIServiceImpl() : super._internal();
+
+  final String apiHost = Environment().config.apiHost;
+
+  @override
+  Future<Response> fetchData(BaseApiSetup apiSetup,
+      {String? appendPath,
+      dynamic body,
+      Map<String, dynamic>? queryParams,
+      Map<String, String>? headerParams = const {
+        'accept': 'application/json'
+      }}) {
+    return _requestData(
+      BaseParams(
+          apiSetup: apiSetup,
+          baseUrl: apiHost,
+          appendPath: appendPath,
+          bodyParams: body,
+          headerParams: headerParams,
+          queryParams: queryParams),
+    );
+  }
+
+  @override
   Future<Response> uploadFile(
-    dynamic apiEnum,
-    String userId,
-    String accessToken,
-    List<File> body, {
-    String? appendPath,
-  }) {
-    throw UnimplementedError();
+      BaseApiSetup apiSetup, String userId, String accessToken, List<File> body,
+      {String? appendPath}) {
+    var list = body.map(
+      (e) => MultipartFile(
+        e.readAsBytes(),
+        filename: basename(e.path),
+      ),
+    );
+    final form = FormData({
+      'file': list,
+      'userId': userId,
+    });
+    var header = getAuthHeader(accessToken);
+    return _requestData(BaseParams(
+        baseUrl: apiHost,
+        appendPath: appendPath,
+        apiSetup: apiSetup,
+        bodyParams: form,
+        headerParams: header));
   }
 }

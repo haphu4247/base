@@ -7,7 +7,7 @@
  - Getx Pattern: https://kauemurakami.github.io/getx_pattern/
  - Getx CLI: https://pub.dev/packages/get_cli
 
-![alt text](.../assets/images/base_diagram.jpg?raw=true)
+![alt text](../assets/images/base_diagram.jpg?raw=true)
 
  ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -21,7 +21,7 @@ void main() async {
   await Environment().initConfig(flavour);
   runApp(
     GetMaterialApp(
-      title: "PhuHP",
+      title: "My Base Project: ${flavour.name}",
       debugShowCheckedModeBanner: Environment().config.showBanner,
       theme: AppThemes.instance.light,
       darkTheme: AppThemes.instance.dark,

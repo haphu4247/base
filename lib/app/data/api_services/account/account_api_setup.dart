@@ -5,10 +5,12 @@ enum AccountApi {
   signup,
   update,
   remove,
+  updateName,
+  changeAvatar
 }
 
-class AccountapiSetup extends BaseApiSetup {
-  AccountapiSetup(AccountApi apiType) : _apiType = apiType;
+class AccountApiSetup extends BaseApiSetup {
+  AccountApiSetup(AccountApi apiType) : _apiType = apiType;
   AccountApi _apiType;
 
   @override
@@ -22,6 +24,10 @@ class AccountapiSetup extends BaseApiSetup {
         return 'api/account';
       case AccountApi.remove:
         return 'api/account/$appendPath';
+      case AccountApi.updateName:
+        return 'api/account/name';
+      case AccountApi.changeAvatar:
+        return 'api/account/avatar';
     }
   }
 
@@ -31,8 +37,9 @@ class AccountapiSetup extends BaseApiSetup {
       case AccountApi.accountInfo:
         return HTTPMethod.get;
       case AccountApi.signup:
-        return HTTPMethod.post;
       case AccountApi.update:
+      case AccountApi.updateName:
+      case AccountApi.changeAvatar:
         return HTTPMethod.post;
       case AccountApi.remove:
         return HTTPMethod.delete;

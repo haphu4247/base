@@ -19,7 +19,7 @@ abstract class BaseApiClient extends GetConnect {
     super.onInit();
   }
 
-  Future<Response> fetchData(
+  Future<Response> callApi(
     BaseApiSetup apiSetup, {
     String? appendPath,
     dynamic body,
@@ -77,7 +77,7 @@ class _BaseApiClientImpl extends BaseApiClient {
   final String apiHost = Environment().config.apiHost;
 
   @override
-  Future<Response> fetchData(BaseApiSetup apiSetup,
+  Future<Response> callApi(BaseApiSetup apiSetup,
       {String? appendPath,
       dynamic body,
       Map<String, dynamic>? queryParams,

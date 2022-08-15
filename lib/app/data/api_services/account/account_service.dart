@@ -8,22 +8,22 @@ class AccountService<T extends BaseApiClient> {
   final T _apiClient;
 
   Future<Response> accountInfo(Map body) {
-    return _apiClient.fetchData(AccountApiSetup(AccountApi.accountInfo),
+    return _apiClient.callApi(AccountApiSetup(AccountApi.accountInfo),
         body: body);
   }
 
   Future<Response> signup(Map body) {
-    return _apiClient.fetchData(AccountApiSetup(AccountApi.signup), body: body);
+    return _apiClient.callApi(AccountApiSetup(AccountApi.signup), body: body);
   }
 
   Future<Response> update(Map body, String accessToken) {
     final header = _apiClient.getAuthHeader(accessToken);
-    return _apiClient.fetchData(AccountApiSetup(AccountApi.update),
+    return _apiClient.callApi(AccountApiSetup(AccountApi.update),
         body: body, headerParams: header);
   }
 
   Future<Response> changeAvatar(Map body) {
-    return _apiClient.fetchData(AccountApiSetup(AccountApi.changeAvatar),
+    return _apiClient.callApi(AccountApiSetup(AccountApi.changeAvatar),
         body: body);
   }
 }

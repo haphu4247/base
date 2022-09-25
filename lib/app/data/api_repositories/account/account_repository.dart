@@ -1,9 +1,9 @@
-import 'package:base/app/base/api_client/base_api_client.dart';
+import 'package:base/app/base/api_client/base_api_service.dart';
 import 'package:get/get.dart';
 import 'account_api_setup.dart';
 
-class AccountService<T extends BaseApiClient> {
-  AccountService({required T apiClient}) : _apiClient = apiClient;
+class AccountRepository<T extends BaseApiService> {
+  AccountRepository({required T apiClient}) : _apiClient = apiClient;
 
   final T _apiClient;
 

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../generated/locales.g.dart';
-import '../../data/local/local_data_key.dart';
+import '../../data/local_repositories/local_repository.dart';
 
 class AppLanguages extends Translations {
   static final AppLanguages _instance = AppLanguages._internal();
@@ -58,7 +58,7 @@ class AppLanguages extends Translations {
   }
 
   static void _saveLastSelectedLanguage(String langCode) async {
-    await LocalDataKey.sAppLocale.setString(langCode);
+    await LocalRepository().setAppLocale(langCode);
   }
 
   static Locale getLocaleFromLanguage({String? langCode}) {

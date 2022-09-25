@@ -6,10 +6,10 @@ import 'base_api_setup.dart';
 import 'base_params.dart';
 import '../../flavour/environment.dart';
 
-abstract class BaseApiClient extends GetConnect {
-  BaseApiClient._internal();
-  factory BaseApiClient() {
-    return _BaseApiClientImpl();
+abstract class BaseApiService extends GetConnect {
+  BaseApiService._internal();
+  factory BaseApiService() {
+    return _BaseApiServiceImpl();
   }
 
   @override
@@ -71,8 +71,8 @@ abstract class BaseApiClient extends GetConnect {
   }
 }
 
-class _BaseApiClientImpl extends BaseApiClient {
-  _BaseApiClientImpl() : super._internal();
+class _BaseApiServiceImpl extends BaseApiService {
+  _BaseApiServiceImpl() : super._internal();
 
   final String apiHost = Environment().config.apiHost;
 

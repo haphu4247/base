@@ -1,8 +1,7 @@
 //https://api.flutter.dev/flutter/material/TextTheme-class.html
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../data/local/local_data_key.dart';
+import '../../data/local_repositories/local_repository.dart';
 import 'dark_theme.dart';
 import 'light_theme.dart';
 
@@ -16,12 +15,7 @@ class AppThemes {
   var light = appLightTheme;
   var dark = appDarkTheme;
   Future<ThemeMode> loadTheme() async {
-    var result = await LocalDataKey.sThemes.getString();
-    if (result != null) {
-      themeMode = ThemeMode.values.byName(result);
-    } else {
-      themeMode = ThemeMode.light;
-    }
+    themeMode = await LocalRepository().themes();
     return themeMode;
   }
 
@@ -32,7 +26,7 @@ class AppThemes {
     } else {
       themeMode = ThemeMode.light;
     }
-    await LocalDataKey.sThemes.setString(themeMode.name);
+    await LocalRepository().saveTheme(themeMode);
     Get.changeThemeMode(themeMode);
   }
 }

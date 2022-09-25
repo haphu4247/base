@@ -3,7 +3,9 @@ import 'dart:convert';
 import 'package:encrypt/encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../base/base_model.dart';
+import '../../../base/base_model.dart';
+
+// part of 'package:base/app/data/local_repositories/local_repository.dart';
 
 /**
  * add prefix for specify the data type.

@@ -1,7 +1,8 @@
-import 'package:base/app/base/api_client/base_api_client.dart';
+import 'package:base/app/base/api_client/base_api_service.dart';
+import 'package:base/app/data/api_repositories/account/account_repository.dart';
 import 'package:get/get.dart';
 
-import '../data/api_services/account/account_service.dart';
+import '../data/local_repositories/local_repository.dart';
 
 abstract class BaseBindings extends Bindings {
   @override
@@ -13,7 +14,7 @@ abstract class BaseBindings extends Bindings {
 class AppBinding extends BaseBindings {
   @override
   void injectService() {
-    BaseAPIServiceBinding().injectService();
+    LocalRepositoryBinding().injectService();
     AccountServiceBinding().injectService();
   }
 }
@@ -21,20 +22,21 @@ class AppBinding extends BaseBindings {
 class AccountServiceBinding extends BaseBindings {
   @override
   void injectService() {
-    bool isRegistered = Get.isRegistered<AccountService>();
+    bool isRegistered = Get.isRegistered<AccountRepository>();
     if (!isRegistered) {
-      BaseApiClient apiClient = Get.find<BaseApiClient>();
-      Get.lazyPut<AccountService>(() => AccountService(apiClient: apiClient));
+      BaseApiService apiClient = Get.find<BaseApiService>();
+      Get.lazyPut<AccountRepository>(
+          () => AccountRepository(apiClient: apiClient));
     }
   }
 }
 
-class BaseAPIServiceBinding extends BaseBindings {
+class LocalRepositoryBinding extends BaseBindings {
   @override
   void injectService() {
-    bool isRegistered = Get.isRegistered<BaseApiClient>();
+    bool isRegistered = Get.isRegistered<LocalRepository>();
     if (!isRegistered) {
-      Get.lazyPut<BaseApiClient>(() => BaseApiClient());
+      Get.lazyPut<LocalRepository>(() => LocalRepository());
     }
   }
 }

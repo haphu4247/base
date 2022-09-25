@@ -1,13 +1,11 @@
 import 'dart:io' show Directory, Platform;
+import 'package:base/app/data/local_repositories/local_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../core/languages/app_languages.dart';
 import '../core/themes/app_themes.dart';
-import '../data/local/db/entities/account_entity.dart';
-import '../data/local/db/entities/user_role.dart';
-import '../data/local/local_data_key.dart';
 import '../routes/app_pages.dart';
 import 'base_config.dart';
 import 'flavour.dart';
@@ -33,28 +31,19 @@ class Environment {
 
   bool isWeb = kIsWeb;
   initConfig(Flavour environment) async {
+    LocalRepository().initData();
+
     // await Firebase.initializeApp(
     //   options: DefaultFirebaseOptions.currentPlatform,
     // );
-    if (!isWeb) {
-      await _initHive();
-    }
     config = _getConfig(environment);
 
     selectedLocales = await _loadLocales();
 
-    _firstTimeOpenApp = await LocalDataKey.bFirstTimeOpenApp.getBool();
+    _firstTimeOpenApp = await LocalRepository().firstTimeOpenApp();
 
     var appTheme = AppThemes.instance;
     themeMode = await appTheme.loadTheme();
-  }
-
-  Future<void> _initHive() async {
-    Directory appDocDir = await getApplicationDocumentsDirectory();
-    String appDocPath = appDocDir.path;
-    Hive.init(appDocPath);
-    Hive.registerAdapter<AccountEntity>(AccountEntityAdapter());
-    Hive.registerAdapter<UserRole>(UserRoleAdapter());
   }
 
   String get initial {
@@ -75,7 +64,7 @@ class Environment {
   }
 
   Future<Locale> _loadLocales() async {
-    String? myLocale = await LocalDataKey.sAppLocale.getString();
+    String? myLocale = await LocalRepository().appLocale();
     return AppLanguages.getLocaleFromLanguage(langCode: myLocale);
   }
 }

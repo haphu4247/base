@@ -1,14 +1,16 @@
 import 'dart:convert';
+
+import 'package:base/app/core/utils/my_log.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/status/http_status.dart';
 
-import '../../base/base_response.dart';
 import '../../base/base_model.dart';
+import '../../base/base_response.dart';
 import '../../global_widgets/app_toast.dart';
 
 extension ResponseExt on Response {
-  checkResultList<R extends BaseModel<R>>(
+  void checkResultList<R extends BaseModel<R>>(
       {required R instance,
       required ValueChanged<List<R>> onSuccess,
       ValueChanged<BaseErrorModel>? onError,
@@ -16,12 +18,13 @@ extension ResponseExt on Response {
       bool showErrorToast = true,
       bool showSuccessToast = false}) {
     if (isOk) {
-      var parseResponse = BaseResponse.fromJson(body);
+      final parseResponse = BaseResponse.fromJson(body as Map?);
       if (parseResponse.data != null) {
         _showCustomToast(showSuccessToast, type: ToastType.success);
-        List<R> lists = List.from(parseResponse.data)
-            .map((e) => instance.parsedJson(e))
-            .toList();
+        final List<R> lists =
+            List<dynamic>.from(parseResponse.data as Iterable<dynamic>)
+                .map((dynamic e) => instance.parsedJson(e))
+                .toList();
         onSuccess(lists);
       } else {
         _handleError(showErrorToast, onError,
@@ -39,19 +42,19 @@ extension ResponseExt on Response {
     }
   }
 
-  checkResultModel<R extends BaseModel<R>>(
+  void checkResultModel<R extends BaseModel<R>>(
       {required R instance,
       required ValueChanged<R> onSuccess,
       ValueChanged<BaseErrorModel>? onError,
       VoidCallback? onCompleted,
       bool showErrorToast = true,
       bool showSuccessToast = false}) {
-    print('Response: ${jsonEncode(body)}');
+    MyLog.d('Response: ${jsonEncode(body)}');
     if (isOk) {
-      var parseResponse = BaseResponse.fromJson(body);
+      final parseResponse = BaseResponse.fromJson(body as Map?);
       if (parseResponse.data != null) {
         _showCustomToast(showSuccessToast, type: ToastType.success);
-        R model = instance.parsedJson(parseResponse.data);
+        final R model = instance.parsedJson(parseResponse.data);
         onSuccess(model);
       } else {
         _handleError(showErrorToast, onError,
@@ -69,13 +72,13 @@ extension ResponseExt on Response {
     }
   }
 
-  checkResult(ValueChanged<dynamic> onSuccess,
+  void checkResult(ValueChanged<dynamic> onSuccess,
       {ValueChanged<BaseErrorModel>? onError,
       bool showErrorToast = true,
       bool showSuccessToast = false}) {
-    print('Response: ${jsonEncode(body)}');
+    MyLog.d('Response: ${jsonEncode(body)}');
     if (isOk) {
-      var parseResponse = BaseResponse.fromJson(body);
+      final parseResponse = BaseResponse.fromJson(body as Map?);
       if (parseResponse.data != null) {
         _showCustomToast(showSuccessToast, type: ToastType.success);
 
@@ -92,11 +95,11 @@ extension ResponseExt on Response {
     }
   }
 
-  checkResultLoginSocial(ValueChanged<dynamic> onSuccess,
+  void checkResultLoginSocial(ValueChanged<dynamic> onSuccess,
       {ValueChanged<BaseErrorModel>? onError,
       bool showErrorToast = true,
       bool showSuccessToast = false}) {
-    print('Response: ${jsonEncode(body)}');
+    MyLog.d('Response: ${jsonEncode(body)}');
     if (isOk) {
       if (body != null) {
         _showCustomToast(showSuccessToast, type: ToastType.success);
@@ -128,9 +131,9 @@ extension ResponseExt on Response {
     BaseErrorModel errorModel;
     if (body is String) {
       errorModel = BaseErrorModel(
-          code: errorCode, message: body, messageCode: messageCode);
+          code: errorCode, message: body as String, messageCode: messageCode);
     } else {
-      errorModel = BaseErrorModel.fromJson(body);
+      errorModel = BaseErrorModel.fromJson(body as Map?);
     }
 
     if (errorModel.code == null) {

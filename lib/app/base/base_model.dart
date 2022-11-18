@@ -3,8 +3,7 @@ abstract class BaseModel<T> {
 
   Map toJson();
 
-  factory BaseModel.fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
+  factory BaseModel.fromJson(Map? json) {
     throw UnimplementedError();
   }
 }
@@ -19,8 +18,9 @@ class BaseErrorModel implements BaseModel<BaseErrorModel> {
   String? message;
   int? code;
 
+  @override
   Map<String, dynamic> toJson() {
-    return {
+    return <String, dynamic>{
       'messageCode': messageCode,
       'message': message,
       'code': code,
@@ -28,11 +28,12 @@ class BaseErrorModel implements BaseModel<BaseErrorModel> {
   }
 
   @override
-  factory BaseErrorModel.fromJson(Map json) {
+  factory BaseErrorModel.fromJson(Map? json) {
     return BaseErrorModel(
-        messageCode: json['messageCode'],
-        message: json['message'],
-        code: json['code']);
+      messageCode: json?['messageCode'] as String?,
+      message: json?['message'] as String?,
+      code: json?['code'] as int?,
+    );
   }
 
   @override
@@ -41,7 +42,7 @@ class BaseErrorModel implements BaseModel<BaseErrorModel> {
   }
 
   @override
-  BaseErrorModel parsedJson(data) {
-    return BaseErrorModel.fromJson(data);
+  BaseErrorModel parsedJson(dynamic data) {
+    return BaseErrorModel.fromJson(data as Map?);
   }
 }

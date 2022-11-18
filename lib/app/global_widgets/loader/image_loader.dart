@@ -31,12 +31,12 @@ class ImageLoader extends StatelessWidget {
         color: color,
         width: width,
         height: height,
-        placeholder: (context, url) => Container(
+        placeholder: (BuildContext context, String url) => Container(
           height: Utils.height(context, height ?? 24),
           child: Center(
               child: CircularProgressIndicator(color: AppColors.primary)),
         ),
-        errorWidget: (context, url, error) =>
+        errorWidget: (BuildContext context, String url, dynamic error) =>
             _ErrorLoader(fit: fit, size: width),
       );
     } else if (name.endsWith(IconsType.svg.name)) {

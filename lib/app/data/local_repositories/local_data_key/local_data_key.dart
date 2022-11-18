@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:base/app/core/utils/my_log.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,18 +54,18 @@ extension LocalDataKeyExt on LocalDataKey {
     return _prefs.clear();
   }
 
-  Future<bool> saveObj<T extends BaseModel<T>>(T obj) async {
-    var savedObj = jsonEncode(obj.toJson());
-    return await setString(savedObj);
+  Future<bool> saveObj<T extends BaseModel<T>>(T obj) {
+    final savedObj = jsonEncode(obj.toJson());
+    return setString(savedObj);
   }
 
   Future<T?> getObj<T extends BaseModel<T>>(T instance) async {
-    var source = await getString();
+    final source = await getString();
     if (source != null) {
-      var decodeJson = jsonDecode(source);
+      final dynamic decodeJson = jsonDecode(source);
       // var obj = (T as BaseModel<T>).parsedJson(decodeJson);
-      print('decodeJson: ${decodeJson.toString()}');
-      var obj = instance.parsedJson(decodeJson);
+      MyLog.d('decodeJson: ${decodeJson.toString()}');
+      final obj = instance.parsedJson(decodeJson);
       return obj;
     }
     return null;
@@ -77,8 +78,9 @@ extension LocalDataKeyExt on LocalDataKey {
   Future<List<T>?> getListObj<T extends BaseModel<T>>(T instance) async {
     var source = await getString();
     if (source != null) {
-      List<dynamic> listObj = jsonDecode(source);
-      var mapList = listObj.map((e) => instance.parsedJson(e)).toList();
+      final List<dynamic> listObj = jsonDecode(source) as List<dynamic>;
+      final mapList =
+          listObj.map((dynamic e) => instance.parsedJson(e)).toList();
       return mapList;
     }
     return null;
@@ -92,13 +94,13 @@ extension LocalDataKeyExt on LocalDataKey {
 
   Future<String?> getString() async {
     final _prefs = await SharedPreferences.getInstance();
-    var key = name;
-    var encryptKey = _CryptoHelper.instance.encrypt(key);
+    final key = name;
+    final encryptKey = _CryptoHelper.instance.encrypt(key);
     var value = _prefs.getString(encryptKey);
     if (value != null && value.isNotEmpty) {
       value = _CryptoHelper.instance.decrypt(value);
     }
-    print('key: $key value:$value');
+    MyLog.d('key: $key value:$value');
     return value;
   }
 }
@@ -106,7 +108,7 @@ extension LocalDataKeyExt on LocalDataKey {
 class _CryptoHelper {
   final Key key = Key.fromUtf8('ASDFGHJKLASDFGHJ');
   final IV iv = IV.fromLength(16);
-  late final encrypter;
+  late final Encrypter encrypter;
   // final String _ivKey = "912QWA56CFB3SA3F";
 
   static final instance = _CryptoHelper();

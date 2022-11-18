@@ -1,18 +1,14 @@
-import 'dart:io' show Directory, Platform;
 import 'package:base/app/data/local_repositories/local_repository.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 
 import '../core/languages/app_languages.dart';
 import '../core/themes/app_themes.dart';
 import '../routes/app_pages.dart';
 import 'base_config.dart';
-import 'flavour.dart';
 import 'config_prod.dart';
 import 'config_staging.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'flavour.dart';
 
 class Environment {
   static final Environment _singleton = Environment._internal();
@@ -30,7 +26,7 @@ class Environment {
   bool? _firstTimeOpenApp;
 
   bool isWeb = kIsWeb;
-  initConfig(Flavour environment) async {
+  Future<void> initConfig(Flavour environment) async {
     LocalRepository().initData();
 
     // await Firebase.initializeApp(
@@ -42,7 +38,7 @@ class Environment {
 
     _firstTimeOpenApp = await LocalRepository().firstTimeOpenApp();
 
-    var appTheme = AppThemes.instance;
+    final AppThemes appTheme = AppThemes.instance;
     themeMode = await appTheme.loadTheme();
   }
 
@@ -64,7 +60,7 @@ class Environment {
   }
 
   Future<Locale> _loadLocales() async {
-    String? myLocale = await LocalRepository().appLocale();
+    final String? myLocale = await LocalRepository().appLocale();
     return AppLanguages.getLocaleFromLanguage(langCode: myLocale);
   }
 }

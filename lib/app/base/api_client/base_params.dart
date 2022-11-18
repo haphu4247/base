@@ -6,8 +6,6 @@ abstract class BaseParams {
   dynamic get body;
   Map<String, String>? get headers;
   Map<String, dynamic>? get query;
-
-  BaseParams._internal();
   factory BaseParams(
       {String? baseUrl,
       String? appendPath,
@@ -24,6 +22,8 @@ abstract class BaseParams {
       headerParams: headerParams,
     );
   }
+
+  BaseParams._internal();
 }
 
 class _BaseParamsImpl extends BaseParams {
@@ -50,7 +50,7 @@ class _BaseParamsImpl extends BaseParams {
   HTTPMethod get method => apiSetup.method;
 
   @override
-  get body => bodyParams;
+  dynamic get body => bodyParams;
 
   @override
   Map<String, String>? get headers => headerParams;

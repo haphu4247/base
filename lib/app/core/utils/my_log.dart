@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
@@ -7,13 +6,13 @@ class MyLog {
 
   MyLog._internal();
 
-  static d(String string) {
+  static void d(String string) {
     if (kDebugMode) {
-      log(string);
+      _logger.d(string);
     }
   }
 
-  static e(String string) {
+  static void e(String string) {
     if (kDebugMode) {
       _logger.e(string);
     }

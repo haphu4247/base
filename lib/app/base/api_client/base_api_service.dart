@@ -7,14 +7,14 @@ import 'base_params.dart';
 import '../../flavour/environment.dart';
 
 abstract class BaseApiService extends GetConnect {
-  BaseApiService._internal();
   factory BaseApiService() {
     return _BaseApiServiceImpl();
   }
+  BaseApiService._internal();
 
   @override
   void onInit() {
-    timeout = Duration(seconds: 45);
+    timeout = const Duration(seconds: 45);
     // baseUrl = Environment().config.apiHost;
     super.onInit();
   }
@@ -38,24 +38,25 @@ abstract class BaseApiService extends GetConnect {
   }
 
   Future<Response> _requestData(BaseParams params) async {
-    var tempQuery = params.query;
+    final tempQuery = params.query;
     var fullURL = params.url;
     if (tempQuery != null) {
-      fullURL = '${fullURL}?${_encodeQueryParameters(tempQuery)}';
+      fullURL = '$fullURL?${_encodeQueryParameters(tempQuery)}';
     }
-    return await request(
+    final req = await request<Response>(
       fullURL,
       params.method.name,
       body: params.body,
       headers: params.headers,
       // query: tempQuery,
     );
+    return req;
   }
 
   String _encodeQueryParameters(Map params) {
     return params.entries
         .map((e) =>
-            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+            '${Uri.encodeComponent('${e.key}')}=${Uri.encodeComponent('${e.value}')}')
         .join('&');
   }
 
@@ -99,17 +100,18 @@ class _BaseApiServiceImpl extends BaseApiService {
   Future<Response> uploadFile(
       BaseApiSetup apiSetup, String userId, String accessToken, List<File> body,
       {String? appendPath}) {
-    var list = body.map(
+    final list = body.map(
       (e) => MultipartFile(
         e.readAsBytes(),
         filename: basename(e.path),
       ),
     );
-    final form = FormData({
+    final map = <String, dynamic>{
       'file': list,
       'userId': userId,
-    });
-    var header = getAuthHeader(accessToken);
+    };
+    final form = FormData(map);
+    final header = getAuthHeader(accessToken);
     return _requestData(BaseParams(
         baseUrl: apiHost,
         appendPath: appendPath,

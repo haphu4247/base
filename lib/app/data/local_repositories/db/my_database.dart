@@ -8,16 +8,18 @@ extension LocalDatabaseTypeExt on LocalDatabaseType {
     return this.name;
   }
 
-  save<T extends BaseEntity<T>>(
+  Future<void> save<T extends BaseEntity<T>>(
     T value,
   ) async {
-    var box = await Hive.openBox<T>(_getName());
+    final box = await Hive.openBox<T>(_getName());
     await box.add(value);
     await box.close();
   }
 
-  close() async {
-    if (Hive.isBoxOpen(_getName())) await Hive.close();
+  Future<void> close() async {
+    if (Hive.isBoxOpen(_getName())) {
+      await Hive.close();
+    }
   }
 
   Future<Box<E>> open<E>() async {
@@ -28,8 +30,8 @@ extension LocalDatabaseTypeExt on LocalDatabaseType {
   }
 
   Future<Iterable<T>> read<T extends BaseEntity<T>>() async {
-    var box = await Hive.openBox<T>(_getName());
-    var result = box.values;
+    final box = await Hive.openBox<T>(_getName());
+    final result = box.values;
     await box.close();
     return result;
   }

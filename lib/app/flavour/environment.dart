@@ -10,12 +10,13 @@ import 'config_prod.dart';
 import 'config_staging.dart';
 import 'flavour.dart';
 
+final Environment _singleton = Environment._internal();
+
 class Environment {
-  static final Environment _singleton = Environment._internal();
-  Environment._internal();
   factory Environment() {
     return _singleton;
   }
+  Environment._internal();
 
   late BaseConfig config;
 
@@ -32,7 +33,7 @@ class Environment {
     // await Firebase.initializeApp(
     //   options: DefaultFirebaseOptions.currentPlatform,
     // );
-    config = _getConfig(environment);
+    config = BaseConfig(environment);
 
     selectedLocales = await _loadLocales();
 
@@ -47,16 +48,6 @@ class Environment {
       return Routes.SPLASH;
     }
     return Routes.SPLASH;
-  }
-
-  BaseConfig _getConfig(Flavour environment) {
-    switch (environment) {
-      case Flavour.production:
-        return ProdConfig();
-      case Flavour.dev:
-      case Flavour.staging:
-        return StagingConfig();
-    }
   }
 
   Future<Locale> _loadLocales() async {

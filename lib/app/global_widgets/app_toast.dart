@@ -67,7 +67,7 @@ class MyToast {
       child: _MyCustomToast(
           onClose: onClose, type: type, text: text, subText: subText),
       gravity: ToastGravity.TOP,
-      toastDuration: Duration(seconds: 1),
+      toastDuration: const Duration(seconds: 1),
     );
   }
 }
@@ -86,14 +86,14 @@ class _MyCustomToast extends StatelessWidget {
   VoidCallback? onClose;
   @override
   Widget build(BuildContext context) {
-    var color = type.getColor();
+    final color = type.getColor();
     return Card(
       elevation: 2.0,
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(
-                stops: [0.02, 0.02], colors: [color, Colors.white]),
-            borderRadius: BorderRadius.all(const Radius.circular(6.0))),
+                stops: const [0.02, 0.02], colors: [color, Colors.white]),
+            borderRadius: const BorderRadius.all(Radius.circular(6))),
         child: Row(
           children: [
             Padding(
@@ -109,7 +109,6 @@ class _MyCustomToast extends StatelessWidget {
               child: Container(
                 padding: Utils.paddingVertical(context, padding: 6),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -121,7 +120,7 @@ class _MyCustomToast extends StatelessWidget {
                           .copyWith(fontWeight: FontWeight.w700),
                       maxLines: 1,
                     ),
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       height: Utils.height(context, 30),
                       child: Text(

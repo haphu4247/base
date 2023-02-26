@@ -14,29 +14,11 @@ abstract class BaseBindings extends Bindings {
 class AppBinding extends BaseBindings {
   @override
   void injectService() {
-    LocalRepositoryBinding().injectService();
-    AccountServiceBinding().injectService();
-  }
-}
+    final BaseApiService apiClient = BaseApiService();
+    Get.lazyPut<BaseApiService>(() => apiClient);
+    Get.lazyPut<AccountRepository>(
+        () => AccountRepository(apiClient: apiClient));
 
-class AccountServiceBinding extends BaseBindings {
-  @override
-  void injectService() {
-    bool isRegistered = Get.isRegistered<AccountRepository>();
-    if (!isRegistered) {
-      BaseApiService apiClient = Get.find<BaseApiService>();
-      Get.lazyPut<AccountRepository>(
-          () => AccountRepository(apiClient: apiClient));
-    }
-  }
-}
-
-class LocalRepositoryBinding extends BaseBindings {
-  @override
-  void injectService() {
-    bool isRegistered = Get.isRegistered<LocalRepository>();
-    if (!isRegistered) {
-      Get.lazyPut<LocalRepository>(() => LocalRepository());
-    }
+    Get.lazyPut<LocalRepository>(LocalRepository.new);
   }
 }

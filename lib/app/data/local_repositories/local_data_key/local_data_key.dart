@@ -4,7 +4,7 @@ import 'package:base/app/core/utils/my_log.dart';
 import 'package:encrypt/encrypt.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../base/base_model.dart';
+import '../../../base/models/base_model.dart';
 
 // part of 'package:base/app/data/local_repositories/local_repository.dart';
 

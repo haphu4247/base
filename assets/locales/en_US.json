@@ -1,44 +1,7 @@
 {
-   "intro": {
-      "header": {
-         "name": "<PhuHP/>",
-         "project": "Project",
-         "resume": "Resume",
-         "about": "About",
-         "skills": "Skills"
-      },
-      "body": {
-         "name": "Hey, I am Alex",
-         "description": "Thanks for visit my page. I passionate about making mobile application and would love to changing the world by technology",
-         "moreAboutMe": "More about me"
-      },
-      "skills": {
-         "technical": {
-            "title": "Technical Skills"
-         },
-         "soft": {
-            "title": "Soft Skills",
-            "collaboration": "Collaboration",
-            "positivity": "Positivity",
-            "adaptability": "Adaptability",
-            "problem_solving": "Problem Solving",
-            "empathy": "Empathy",
-            "organization": "Organization",
-            "creativity": "Creativity"
-         },
-         "moreAboutMe": "More about me"
-      },
-      "footer": {
-         "keepInTouch": "Keep In Touch",
-         "description": "Are you working on something great? I would love to join with you to solve any problems in your awsome project! Drop me a letter and kick off the project right now! Just do it,",
-         "email": "haphu4247@gmail.com",
-         "with": "with",
-         "by": "by",
-         "using": "using"
-      },
-      "aboutMe": {
-         "title": "About Me",
-         "description": "My english name is Alex. I am a full-stack mobile app developer,be able to work well in both of Android and iOS using native SDK or Flutter framework. I started as an Android developer and learned about iOS and Flutter on working process. In my work history, I worked on many projects and in many domains, such as payment, livestreaming, booking, audio and learning app. In my free time, I love working on side projects and learning new technologies about mobile application."
-      }
+   "common": {
+      "oke" : "Ok",
+      "cancel" : "Cancel",
+      "caution" : "Caution"
    }
 }

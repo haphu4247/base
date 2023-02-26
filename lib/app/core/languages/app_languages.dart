@@ -17,37 +17,15 @@ class AppLanguages extends Translations {
   @override
   Map<String, Map<String, String>> get keys => AppTranslation.translations;
 
-  static final supportedLocales = [
+  static const supportedLocales = [
     // Default: English, US (en_US)
     Locale('en', 'US'),
-
-    // Czech, Czech Republic (cs_CZ)
-    Locale('cs', 'CZ'),
-    // German, Germany (de_DE)
-    Locale('de', 'DE'),
-    // Spanish, US (es_US)
-    Locale('es', 'US'),
-    // French, France (fr_FR)
-    Locale('fr', 'FR'),
-    // Japanese (ja_JP)
-    Locale('ja', 'JP'),
-    // Korean (ko_KR)
-    Locale('ko', 'KR'),
-    // Russian (ru_RU)
-    Locale('ru', 'RU'),
-    // Thai, Thailand (th_TH)
-    Locale('th', 'TH'),
-    // Ukrainian, Ukraine (uk_UA)
-    Locale('uk', 'UA'),
     // Vietnamese, Vietnam (vi_VN)
     Locale('vi', 'VN'),
     // Chinese, PRC (zh_CN)
-    Locale('zh', 'CN'),
-    // Chinese, Taiwan (zh_TW)
-    Locale('zh', 'TW'),
   ];
 
-  static final fallbackLocale = Locale('en', 'US');
+  static final fallbackLocale = supportedLocales.first;
 
   // update app language
   static Locale changeLocale(String langCode) {
@@ -57,7 +35,7 @@ class AppLanguages extends Translations {
     return locale;
   }
 
-  static void _saveLastSelectedLanguage(String langCode) async {
+  static Future<void> _saveLastSelectedLanguage(String langCode) async {
     await LocalRepository().setAppLocale(langCode);
   }
 
@@ -65,8 +43,9 @@ class AppLanguages extends Translations {
     var lang = langCode ?? Get.deviceLocale?.languageCode;
     if (lang != null) {
       for (int i = 0; i < supportedLocales.length; i++) {
-        if (lang == supportedLocales[i].languageCode)
+        if (lang == supportedLocales[i].languageCode) {
           return supportedLocales[i];
+        }
       }
     }
 

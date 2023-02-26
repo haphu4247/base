@@ -7,11 +7,11 @@ const _screenWidth = 375;
 class Utils {
   Utils._internal();
   static double _heightPercent(double size) {
-    return (size / _screenHeight);
+    return size / _screenHeight;
   }
 
   static double _widthPercent(double size) {
-    return (size / _screenWidth);
+    return size / _screenWidth;
   }
 
   static double height(BuildContext context, double size) {

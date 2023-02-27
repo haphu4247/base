@@ -13,8 +13,18 @@ Future<void> startApp(Flavour flavour) async {
 
   MyLog.d('flavour:${flavour.name}');
   await Environment().initConfig(flavour);
-  runApp(
-    GetMaterialApp(
+  runApp(App(flavour: flavour));
+}
+
+class App extends StatelessWidget {
+  const App({
+    Key? key,
+    required this.flavour,
+  }) : super(key: key);
+  final Flavour flavour;
+  @override
+  Widget build(BuildContext context) {
+    return GetMaterialApp(
       title: 'My Base Project: ${flavour.name}',
       debugShowCheckedModeBanner: Environment().config.showBanner,
       theme: AppThemes.instance.light,
@@ -28,6 +38,11 @@ Future<void> startApp(Flavour flavour) async {
       initialRoute: AppPages.INITIAL,
       initialBinding: AppBinding(),
       getPages: AppPages.routes,
-    ),
-  );
+    );
+  }
+  // @override
+  // void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  //   super.debugFillProperties(properties);
+  //   properties.add(EnumProperty<Flavour>('flavour', flavour));
+  // }
 }

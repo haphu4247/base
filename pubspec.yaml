@@ -28,7 +28,7 @@ dependencies:
 
   cached_network_image: ^3.2.0
   #for Html string
-  flutter_html: ^2.2.1
+  # flutter_html: ^2.2.1
 
   fluttertoast: ^8.0.9
 
@@ -57,6 +57,9 @@ dev_dependencies:
   hive_generator: ^2.0.0
   analyzer: ^5.2.0
   lints: ^1.0.1
+
+  flutter_flavorizr: ^2.1.5
+
   flutter_test: 
     sdk: flutter
 
@@ -87,3 +90,36 @@ flutter:
           
   uses-material-design: true
 
+flavorizr:
+  app:
+    android:
+      flavorDimensions:  "flavor-type"
+    ios: null
+  flavors:
+    dev:
+      app:
+        name: "My Base App Dev"
+
+      android:
+        applicationId: "com.phuhp.base.base.dev"
+
+      ios:
+        bundleId: "com.phuhp.base.base.dev"
+    staging:
+      app:
+        name: "My Base App Staging"
+
+      android:
+        applicationId: "com.phuhp.base.base.staging"
+
+      ios:
+        bundleId: "com.phuhp.base.base.staging"
+    prod:
+      app:
+        name: "My Base App"
+
+      android:
+        applicationId: "com.phuhp.base.base"
+
+      ios:
+        bundleId: "com.phuhp.base.base"

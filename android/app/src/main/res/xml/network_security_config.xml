@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- The default configuration for apps targeting Android 6.0 (API level 23) and lower is as follows: -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+
+    <domain-config>
+        <domain includeSubdomains="true">phuhp.com</domain>
+        <domain includeSubdomains="true">dev.phuhp.com</domain>
+    </domain-config>
+</network-security-config>

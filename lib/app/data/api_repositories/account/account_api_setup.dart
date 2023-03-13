@@ -45,4 +45,7 @@ class AccountApiSetup extends BaseApiSetup {
         return HTTPMethod.delete;
     }
   }
+
+  @override
+  String get apiName => _apiType.name;
 }

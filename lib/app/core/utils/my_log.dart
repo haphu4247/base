@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
@@ -6,15 +8,30 @@ class MyLog {
 
   MyLog._internal();
 
-  static void d(String string) {
-    if (kDebugMode) {
-      _logger.d(string);
+  static void console(dynamic e) {
+    if (kDebugMode && e is String) {
+      log(e);
     }
   }
 
-  static void e(String string) {
+  static void d(dynamic tag, dynamic e) {
     if (kDebugMode) {
-      _logger.e(string);
+      _logger.d('${tag.runtimeType} : $e');
+    }
+  }
+
+  static void e(
+    dynamic tag, {
+    dynamic message,
+    dynamic error,
+    StackTrace? stackTrace,
+  }) {
+    if (kDebugMode) {
+      _logger.e(
+        '${tag.runtimeType} : $message',
+        error,
+        stackTrace,
+      );
     }
   }
 }

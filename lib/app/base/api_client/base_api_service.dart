@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:base/app/base/cached/base_cached_local.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
+import '../../core/utils/my_log.dart';
+import '../models/cached_response_model.dart';
 import 'base_api_setup.dart';
 import 'base_params.dart';
 import '../../flavour/environment.dart';
@@ -11,13 +14,6 @@ abstract class BaseApiService extends GetConnect {
     return _BaseApiServiceImpl();
   }
   BaseApiService._internal();
-
-  @override
-  void onInit() {
-    timeout = const Duration(seconds: 45);
-    // baseUrl = Environment().config.apiHost;
-    super.onInit();
-  }
 
   Future<Response> callApi(
     BaseApiSetup apiSetup, {
@@ -37,33 +33,6 @@ abstract class BaseApiService extends GetConnect {
     throw UnimplementedError();
   }
 
-  Future<Response> _requestData(BaseParams params) async {
-    final tempQuery = params.query;
-    var fullURL = params.url;
-    if (tempQuery != null) {
-      fullURL = '$fullURL?${_encodeQueryParameters(tempQuery)}';
-    }
-    final req = await request<Response>(
-      fullURL,
-      params.method.name,
-      body: params.body,
-      headers: params.headers,
-      // query: tempQuery,
-    );
-    return req;
-  }
-
-  String _encodeQueryParameters(Map params) {
-    return params.entries
-        .map((e) =>
-            '${Uri.encodeComponent('${e.key}')}=${Uri.encodeComponent('${e.value}')}')
-        .join('&');
-  }
-
-  String _queryParameters(Map params) {
-    return params.entries.map((e) => '${e.key}=${e.value}').join('&');
-  }
-
   Map<String, String> getAuthHeader(String accessToken) {
     return {
       'authorization': 'Bearer $accessToken',
@@ -78,13 +47,28 @@ class _BaseApiServiceImpl extends BaseApiService {
   final String apiHost = Environment().config.apiHost;
 
   @override
+  void onInit() {
+    timeout = const Duration(seconds: 20);
+    super.onInit();
+  }
+
+  @override
   Future<Response> callApi(BaseApiSetup apiSetup,
       {String? appendPath,
       dynamic body,
       Map<String, dynamic>? queryParams,
       Map<String, String>? headerParams = const {
         'accept': 'application/json'
-      }}) {
+      }}) async {
+    final cachedType = apiSetup.cachedType;
+    if (cachedType != null) {
+      final json = await cachedType
+          .read(apiSetup.apiName)
+          .then((value) => value?.response);
+      if (json != null) {
+        return json;
+      }
+    }
     return _requestData(
       BaseParams(
           apiSetup: apiSetup,
@@ -93,7 +77,12 @@ class _BaseApiServiceImpl extends BaseApiService {
           bodyParams: body,
           headerParams: headerParams,
           queryParams: queryParams),
-    );
+    ).then((value) {
+      if (cachedType != null) {
+        cachedType.save(apiSetup.apiName, CachedResponseModel(response: value));
+      }
+      return value;
+    });
   }
 
   @override
@@ -118,5 +107,32 @@ class _BaseApiServiceImpl extends BaseApiService {
         apiSetup: apiSetup,
         bodyParams: form,
         headerParams: header));
+  }
+
+  Future<Response> _requestData(BaseParams params) {
+    final tempQuery = params.query;
+    var fullURL = params.url;
+    if (tempQuery != null) {
+      fullURL = '$fullURL?${_encodeQueryParameters(tempQuery)}';
+    }
+    MyLog.d(this, params.toString());
+    return request<dynamic>(
+      fullURL,
+      params.method.name,
+      body: params.body,
+      headers: params.headers,
+      contentType: params.contentType,
+    );
+  }
+
+  String _encodeQueryParameters(Map params) {
+    return params.entries
+        .map((e) =>
+            '${Uri.encodeComponent('${e.key}')}=${Uri.encodeComponent('${e.value}')}')
+        .join('&');
+  }
+
+  String _queryParameters(Map params) {
+    return params.entries.map((e) => '${e.key}=${e.value}').join('&');
   }
 }

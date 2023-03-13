@@ -6,6 +6,7 @@ abstract class BaseParams {
   dynamic get body;
   Map<String, String>? get headers;
   Map<String, dynamic>? get query;
+  String? contentType;
   factory BaseParams(
       {String? baseUrl,
       String? appendPath,

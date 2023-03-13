@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:base/app/base/cached/base_cached_local.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart';
+
 import '../../core/utils/my_log.dart';
+import '../../flavour/environment.dart';
 import '../models/cached_response_model.dart';
 import 'base_api_setup.dart';
 import 'base_params.dart';
-import '../../flavour/environment.dart';
 
 abstract class BaseApiService extends GetConnect {
   factory BaseApiService() {

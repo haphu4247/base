@@ -1,4 +1,3 @@
-import 'package:base/app/core/utils/my_log.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/base/base_bindings.dart';
@@ -11,7 +10,6 @@ import 'app/routes/app_pages.dart';
 Future<void> startApp(Flavour flavour) async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  MyLog.d('flavour:${flavour.name}');
   await Environment().initConfig(flavour);
   runApp(App(flavour: flavour));
 }

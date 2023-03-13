@@ -3,11 +3,9 @@ import 'dart:convert';
 import 'package:base/app/core/utils/my_log.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/status/http_status.dart';
 
-import '../../base/models/error_response.dart';
-import '../../base/models/base_model.dart';
 import '../../base/models/base_response.dart';
+import '../../base/models/error_response.dart';
 import '../../global_widgets/app_toast.dart';
 
 extension ResponseExt on Response {
@@ -47,7 +45,7 @@ extension ResponseExt on Response {
       VoidCallback? onCompleted,
       bool showErrorToast = true,
       bool showSuccessToast = false}) {
-    MyLog.d('Response: ${jsonEncode(body)}');
+    MyLog.d(this, 'Response: ${jsonEncode(body)}');
     if (isOk) {
       final decodeBody = parseBody();
       final model = instance.parsedJson(decodeBody);
